@@ -7,14 +7,22 @@ h1{
 }
 h2{
   background: no-repeat url("img/table.png");
-  background-size: 1700px 850px;
+  background-size: 1700px 700px;
   background-position: center;
-  height: 850px;
+  height: 700px;
   width: 1700px;
   margin: auto;
 }
 div{
   margin: auto;
+}
+.titre{
+  color: #FEFEFE;
+  font-size: 60px;
+  font-family: "Arial";
+  border: 4mm ridge;
+  border-color: red;
+  background-color: black;
 }
 .dealer{
   font-size: 20px;
@@ -37,27 +45,62 @@ div{
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  position: relative;
+  position: static;
+}
+.cards{
+  animation: PlayerIn 2s;
 }
 .pile{
   height: 130px;
   width: 120px;
   display: flex;
   position: relative;
-  top: 370px;
+  top: 300px;
   left: 1300px;
 }
 .scoreDealer{
   font-size: 15px;
   display: flex;
   position: relative;
-  top:180px;
+  top:110px;
   left:500px;
 }
 .scorePlayer{
   font-size: 15px;
   display: flex;
   position: relative;
-  top: 420px;
+  top: 255px;
   left: 500px;
+}
+.fenetre{
+  color: #FEFEFE;
+  font-size: 40px;
+  font-family: "Arial";
+  border: 4mm ridge;
+  border-color: red;
+  background-color: black;
+  position:relative;
+  width: 700px;
+  height: 100px;
+}
+.button{
+  margin: auto;
+  position: relative;
+  width: 300px;
+  height: 50px;
+  font-size: 30px;
+  border: thick double #32a1ce;
+  background-color: black;
+  font-family: "Arial";
+  color: white;
+}
+@keyframes PlayerIn {
+  from{
+    position: relative;
+    left: 40%;
+  }
+  to{
+    position: relative;
+    left: 0%
+  }
 }
