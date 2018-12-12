@@ -47,6 +47,9 @@ div{
   flex-wrap: wrap;
   position: static;
 }
+.cards{
+  animation: PlayerIn 2s;
+}
 .pile{
   height: 130px;
   width: 120px;
@@ -59,14 +62,14 @@ div{
   font-size: 15px;
   display: flex;
   position: relative;
-  top:180px;
+  top:110px;
   left:500px;
 }
 .scorePlayer{
   font-size: 15px;
   display: flex;
   position: relative;
-  top: 420px;
+  top: 380px;
   left: 500px;
 }
 @keyframes PlayerIn {
