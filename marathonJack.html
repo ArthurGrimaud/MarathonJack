@@ -7,30 +7,33 @@
   <title>Marathon Jack</title>
 </head>
 
-  <body >
+  <body>
     <h1>
       Marathon Jack
+      <img id="pileCarte" src="img/pile.png" class="pile" />
     </h1>
     <h2>
-      <p>
+      <p class="dealer">
         Dealer's cards
       </p>
       <div id="ddiv">
+        <label id="sumDealerCards" class="score">0</label>
         <img id="dCards" src="img/1.BMP" />
       </div>
-    <p>
+      <p class="you">
       Your cards
-    </p>
+      </p>
     <div id="ydiv">
+      <label id="sumPlayerCards" class="score">0</label>
       <img id="yCards" src="img/2.BMP" />
     </div>
-  </h2>
+    </h2>
     <h3>
-    <INPUT class="button" type="button" value="Card" name="Card" id="buttonCard">
-    <INPUT class="button" type="button" value="Stay" name="Stay" id="buttonStay">
-    <script src="blackJack.js" type="text/javascript"></script>
-  </h3>
-  </div>
+      <INPUT class="button" type="button" value="Card" name="Card" id="buttonCard">
+      <INPUT class="button" type="button" value="Stay" name="Stay" id="buttonStay">
+      <script src="marathonJack.js" type="text/javascript"></script>
+    </h3>
+    </div>
   </body>
 
 </html>

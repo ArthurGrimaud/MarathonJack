@@ -4,7 +4,32 @@ body{
 }
 
 h2{
-  background: center / contain no-repeat url("img/table.png");
-  flex: auto;
-  margin
+  background: no-repeat url("img/table.png");
+  background-size: 1200px 500px;
+  background-position: center;
+  height: 500px;
+  width: 1200px;
+  margin: auto;
+}
+.dealer{
+  font-size: 20px;
+  display: inline-flex;
+  margin-top: 74px;
+}
+.you{
+  font-size: 20px;
+  display: inline-flex;
+}
+.pile{
+  height: 130px;
+  width: 120px;
+  display: flex;
+  position: relative;
+  top: 340px;
+  left: 1300px;
+}
+.score{
+  font-size: 15px;
+  display: inline-flex;
+  height: 10px;
 }
