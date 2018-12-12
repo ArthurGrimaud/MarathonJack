@@ -6,6 +6,8 @@ var buttonStay = document.getElementById("buttonStay");
 var labelSumDealer = document.getElementById("sumDealerCards");
 var labelSumPlayer = document.getElementById("sumPlayerCards");
 
+var betarea = document.getElementById("bet");
+
 var buttonContinue = document.getElementById("continue");
 var buttonLeave = document.getElementById("leave");
 
@@ -15,7 +17,7 @@ var labelMoney = document.getElementById("money");
 var playerCardsSumValue = 0;
 var dealerCardsSumValue = 0;
 
-var money
+var money = 1000;
 var bet = 0;
 
 var cardList = [...Array(53).keys()];
@@ -80,6 +82,7 @@ function setupListener(){
   buttonCard.addEventListener("click",function(){cardActionManager(cardList,pickedCards)});
   buttonStay.addEventListener("click",function(){dealerActionManager(cardList,pickedCards)});
   buttonContinue.addEventListener("click",function(){resetTurn()});
+  buttonLeave.addEventListener("click",function(){resetTurn()});
 }
 
 /* Initialisation */
@@ -87,8 +90,9 @@ function setupListener(){
 function resetTurn(){
   document.getElementById("ddiv").innerHTML = "";
   document.getElementById("ydiv").innerHTML = "";
-  layerCardsSumValue = 0;
-  dealerCardsSumValue = 0;
+  playerCardsSumValue = getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ydiv"),playerCardsSumValue);
+  dealerCardsSumValue = getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ddiv"),dealerCardsSumValue);
+  bet = betarea.value
   enableButtons();
 }
 
@@ -97,6 +101,7 @@ function disableButtons(){
   buttonStay.disabled = true;
   buttonLeave.disabled = false;
   buttonContinue.disabled = false;
+
 }
 
 function enableButtons(){
@@ -115,10 +120,11 @@ function cardActionManager(cardList,pickedCards){
   labelSumPlayer.innerHTML = String(playerCardsSumValue);
   if (playerCardsSumValue > 42){
     console.log("PERDU");
-    disableButtons();
+    loose();
   }
   if (playerCardsSumValue == 42){
     console.log("Marathon Jack");
+    win();
   }
 }
 
@@ -134,6 +140,7 @@ function dealerActionManager(cardList,pickedCards){
 
     if (playerCardsSumValue <= dealerCardsSumValue){
       console.log("PERDU");
+      loose();
     }
   }
 }
@@ -149,10 +156,12 @@ function win(){
 
 function loose(){
   disableButtons();
-  labelMoney.innerHTML = String(money);
+  labelResult.innerHTML = "You loose this turn"
   money = money - bet;
   labelMoney.innerHTML = String(money);
 }
+
+
 
 
 
