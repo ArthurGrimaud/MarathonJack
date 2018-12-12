@@ -21,7 +21,6 @@ function drawCard(cardList,pickedCards){
     rand = Math.floor(Math.random() * (nbCard)) + 1; //une autre carte est choisie
   }
   pickedCards.push(rand); // on ajoute la carte tiree au carte deja tiree
-  console.log(rand);
   return rand;
 }
 
@@ -31,35 +30,61 @@ function createImg(path,div) {
   return img;
 }
 
-function displayNewCard(cardValue,div) { //arg : div : balise "div dans laquelle la carte est crée"
-  var path = "img/" + cardValue + ".BMP";
-  console.log(path);
+function displayNewCard(cardID,div) { //arg : div : balise "div dans laquelle la carte est crée"
+  var path = "img/" + cardID + ".BMP";
   var newImg = createImg(path);
   var divJS = document.getElementById(div);
   divJS.appendChild(newImg);
-  return cardValue
+  return cardID
 }
 
+function getCardValue(cardID,sumScore){
+  console.log("cardID"+cardID);
+  var cardIDbis ;
+  cardIDbis = cardID;
+
+  for(var i=1 ; i<10 ; i++ ){
+    console.log("cardIDbis"+cardIDbis);
+    if (cardIDbis<14){
+
+      if (cardIDbis == 1){
+        if(sumScore >29){
+          return 1
+        }else{
+          return 11
+        }
+      }
+      if (9 < cardIDbis && cardIDbis < 14){
+        return 10;
+      }
+      else{
+        return cardIDbis;
+      }
+    }
+    cardIDbis = cardIDbis - 13;
+  }
+}
 /* Listeners */
 
 function setupListener(){
-  console.log(buttonCard)
   buttonCard.addEventListener("click",function(){card(playerCardsSumValue,cardList,pickedCards)});
-  buttonStay.addEventListener("click",function(){})
+  buttonStay.addEventListener("click",function(){});
 }
 
 /* gameManager */
 
 function resetTurn(){
-  var playerCardsSumValue = 0
-  var dealerCardsSumValue = 0
+  var playerCardsSumValue = 0;
+  var dealerCardsSumValue = 0;
   document.getElementById("ddiv").innerHTML = "";
   document.getElementById("ydiv").innerHTML = "";
 }
 
 function card(playerCardsSumValue,cardList,pickedCards){
-  playerCardsSumValue = playerCardsSumValue + displayNewCard(drawCard(cardList,pickedCards),"ydiv")
-  labelSumPlayer.innerHTML = playerCardsSumValue;
+  console.log("general"+getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ydiv"),playerCardsSumValue));
+  //var cardValue = getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ydiv"),playerCardsSumValue);
+  //playerCardsSumValue = playerCardsSumValue + cardValue;
+  //labelSumPlayer.innerHTML = playerCardsSumValue;
 }
 
 
