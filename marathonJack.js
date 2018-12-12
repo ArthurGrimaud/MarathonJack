@@ -18,7 +18,7 @@ var playerCardsSumValue = 0;
 var dealerCardsSumValue = 0;
 
 var money = 1000;
-var bet = 0;
+var bet = 100;
 
 var cardList = [...Array(53).keys()];
 var pickedCards = [];  //Carte deja tirees
@@ -90,10 +90,15 @@ function setupListener(){
 function resetTurn(){
   document.getElementById("ddiv").innerHTML = "";
   document.getElementById("ydiv").innerHTML = "";
+  playerCardsSumValue = 0;
+  dealerCardsSumValue = 0;
   playerCardsSumValue = getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ydiv"),playerCardsSumValue);
   dealerCardsSumValue = getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ddiv"),dealerCardsSumValue);
-  bet = betarea.value
+  bet = betarea.value;
   enableButtons();
+  labelSumPlayer.innerHTML = " ";
+  labelSumDealer.innerHTML = " ";
+  labelResult.innerHTML = "Playing...";
 }
 
 function disableButtons(){
@@ -130,17 +135,15 @@ function cardActionManager(cardList,pickedCards){
 
 function dealerActionManager(cardList,pickedCards){
 
-  console.log("dealer"+dealerCardsSumValue);
+  var previousDealerCardsSumValue = 0;
 
-  while (dealerCardsSumValue < 43){
+  while (dealerCardsSumValue)
 
-    var cardScore = getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ddiv"),dealerCardsSumValue);
-    dealerCardsSumValue = dealerCardsSumValue + cardScore;
-    labelSumDealer.innerHTML = String(dealerCardsSumValue);
+  previousDealerCardsSumValue = dealerCardsSumValue
 
-    if (playerCardsSumValue <= dealerCardsSumValue){
-      console.log("PERDU");
-      loose();
+
+
+
     }
   }
 }
@@ -149,28 +152,18 @@ function dealerActionManager(cardList,pickedCards){
 
 function win(){
   disableButtons();
-  labelResult.innerHTML = "You win this turn"
-  money =  money + bet;
-  labelMoney.innerHTML = String(money);
+  labelResult.innerHTML = "You win this turn";
+  var money =  money + bet;
+  labelMoney.innerHTML = String("money :"+money);
 }
 
 function loose(){
   disableButtons();
-  labelResult.innerHTML = "You loose this turn"
-  money = money - bet;
-  labelMoney.innerHTML = String(money);
-}
-
-
-
-
-
-/* sleep  */
-
-function sleep(seconds){
-    var waitUntil = new Date().getTime() + seconds*1000;
-    while(new Date().getTime() < waitUntil) true;
+  labelResult.innerHTML = "You win";
+  var money = money - bet;
+  labelMoney.innerHTML = String("money :"+money);
 }
 
 
 setupListener();
+resetTurn();
