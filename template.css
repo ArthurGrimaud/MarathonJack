@@ -2,7 +2,9 @@ body{
   text-align: center;
   background: gold;
 }
-
+h1{
+  height: 50px;
+}
 h2{
   background: no-repeat url("img/table.png");
   background-size: 1200px 500px;
@@ -25,11 +27,20 @@ h2{
   width: 120px;
   display: flex;
   position: relative;
-  top: 340px;
+  top: 220px;
   left: 1300px;
 }
-.score{
+.scoreDealer{
   font-size: 15px;
-  display: inline-flex;
-  height: 10px;
+  display: flex;
+  position: relative;
+  top:80px;
+  left:600px;
+}
+.scorePlayer{
+  font-size: 15px;
+  display: flex;
+  position: relative;
+  top: 220px;
+  left: 600px;
 }
