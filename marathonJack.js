@@ -6,8 +6,8 @@ var buttonStay = document.getElementById("buttonStay");
 var labelSumDealer = document.getElementById("sumDealerCards");
 var labelSumPlayer = document.getElementById("sumPlayerCards");
 
-var playerCardsSumValue = 0
-var dealerCardsSumValue = 0
+var playerCardsSumValue = 0;
+var dealerCardsSumValue = 0;
 
 var cardList = [...Array(53).keys()];
 var pickedCards = [];  //Carte deja tirees
@@ -26,6 +26,7 @@ function drawCard(cardList,pickedCards){
 
 function createImg(path,div) {
   var img = document.createElement('img');
+  img.setAttribute("class", "cards");
   img.src = path;
   return img;
 }
@@ -67,27 +68,55 @@ function getCardValue(cardID,sumScore){
 /* Listeners */
 
 function setupListener(){
-  buttonCard.addEventListener("click",function(){card(playerCardsSumValue,cardList,pickedCards)});
-  buttonStay.addEventListener("click",function(){});
+  buttonCard.addEventListener("click",function(){cardActionManager(cardList,pickedCards)});
+  buttonStay.addEventListener("click",function(){dealerActionManager(cardList,pickedCards)});
 }
 
 /* gameManager */
 
 function resetTurn(){
-  var playerCardsSumValue = 0;
-  var dealerCardsSumValue = 0;
   document.getElementById("ddiv").innerHTML = "";
   document.getElementById("ydiv").innerHTML = "";
+  layerCardsSumValue = 0;
+  dealerCardsSumValue = 0;
 }
 
-function card(playerCardsSumValue,cardList,pickedCards){
-  console.log("general"+getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ydiv"),playerCardsSumValue));
-  //var cardValue = getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ydiv"),playerCardsSumValue);
-  //playerCardsSumValue = playerCardsSumValue + cardValue;
-  //labelSumPlayer.innerHTML = playerCardsSumValue;
+function cardActionManager(cardList,pickedCards){
+  var cardScore = getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ydiv"),playerCardsSumValue);
+  playerCardsSumValue = playerCardsSumValue + cardScore;
+  labelSumPlayer.innerHTML = String(playerCardsSumValue);
+  if (playerCardsSumValue > 42){
+    console.log("PERDU")
+  }
+  if (playerCardsSumValue == 42){
+    console.log("Marathon Jack")
+  }
 }
 
+function dealerActionManager(cardList,pickedCards){
 
+  console.log("dealer"+dealerCardsSumValue)
+
+  while (dealerCardsSumValue < 43){
+
+    var cardScore = getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ddiv"),dealerCardsSumValue);
+    dealerCardsSumValue = dealerCardsSumValue + cardScore;
+    labelSumDealer.innerHTML = String(dealerCardsSumValue);
+
+    if (playerCardsSumValue <= dealerCardsSumValue){
+      console.log("PERDU")
+    }
+
+  }
+
+}
+
+/* sleep  */
+
+function sleep(seconds){
+    var waitUntil = new Date().getTime() + seconds*1000;
+    while(new Date().getTime() < waitUntil) true;
+}
 
 
 setupListener();
