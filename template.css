@@ -16,6 +16,14 @@ h2{
 div{
   margin: auto;
 }
+.titre{
+  color: #FEFEFE;
+  font-size: 60px;
+  font-family: "Arial";
+  border: 4mm ridge;
+  border-color: red;
+  background-color: black;
+}
 .dealer{
   font-size: 20px;
   display: inline-flex;
@@ -37,7 +45,7 @@ div{
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  position: relative;
+  position: static;
 }
 .pile{
   height: 130px;
@@ -60,4 +68,14 @@ div{
   position: relative;
   top: 420px;
   left: 500px;
+}
+@keyframes PlayerIn {
+  from{
+    position: relative;
+    left: 50%;
+  }
+  to{
+    position: relative;
+    left: 0%
+  }
 }
