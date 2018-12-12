@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <link rel="stylesheet" type="text/css"
-  media = "screen" href="blackJack.css" />
-
+  media = "screen" href="template.css" />
   <meta charset="utf-8"/>
-  <title>Carrousel</title>
-
-
+  <title>Marathon Jack</title>
 </head>
 
   <body >
-
     <h1>
-      Dealer's card
+      Marathon Jack
     </h1>
-
-    <img id="dCards" src="img/1.BMP" />
-
-    <h1>
+    <h2>
+      <p>
+        Dealer's cards
+      </p>
+      <div id="ddiv">
+        <img id="dCards" src="img/1.BMP" />
+      </div>
+    <p>
       Your cards
-    </h1>
-
-    <img id="yCards" src="img/2.BMP" />
-
-
-
+    </p>
+    <div id="ydiv">
+      <img id="yCards" src="img/2.BMP" />
+    </div>
+  </h2>
+    <h3>
     <INPUT class="button" type="button" value="Card" name="Card" id="buttonCard">
-
     <INPUT class="button" type="button" value="Stay" name="Stay" id="buttonStay">
-
     <script src="blackJack.js" type="text/javascript"></script>
-
+  </h3>
+  </div>
   </body>
 
 </html>

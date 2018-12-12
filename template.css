@@ -1,1 +1,10 @@
+body{
+  text-align: center;
+  background: gold;
+}
 
+h2{
+  background: center / contain no-repeat url("img/table.png");
+  flex: auto;
+  margin
+}
