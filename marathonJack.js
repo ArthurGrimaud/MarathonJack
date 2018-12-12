@@ -6,8 +6,17 @@ var buttonStay = document.getElementById("buttonStay");
 var labelSumDealer = document.getElementById("sumDealerCards");
 var labelSumPlayer = document.getElementById("sumPlayerCards");
 
+var buttonContinue = document.getElementById("continue");
+var buttonLeave = document.getElementById("leave");
+
+var labelResult = document.getElementById("result");
+var labelMoney = document.getElementById("money");
+
 var playerCardsSumValue = 0;
 var dealerCardsSumValue = 0;
+
+var money
+var bet = 0;
 
 var cardList = [...Array(53).keys()];
 var pickedCards = [];  //Carte deja tirees
@@ -24,7 +33,7 @@ function drawCard(cardList,pickedCards){
   return rand;
 }
 
-function createImg(path,div) {
+function createImg(path,div) { //crée un objet image de class .card
   var img = document.createElement('img');
   img.setAttribute("class", "cards");
   img.src = path;
@@ -36,10 +45,10 @@ function displayNewCard(cardID,div) { //arg : div : balise "div dans laquelle la
   var newImg = createImg(path);
   var divJS = document.getElementById(div);
   divJS.appendChild(newImg);
-  return cardID
+  return cardID;
 }
 
-function getCardValue(cardID,sumScore){
+function getCardValue(cardID,sumScore){ //retourne la valeur du carte en fonction du nom de sont image
   console.log("cardID"+cardID);
   var cardIDbis ;
   cardIDbis = cardID;
@@ -50,16 +59,16 @@ function getCardValue(cardID,sumScore){
 
       if (cardIDbis == 1){
         if(sumScore >29){
-          return 1
+          return 1; //si l'as fait deppaser 42
         }else{
-          return 11
+          return 11; // si l'as ne fait pas depasser 42
         }
       }
       if (9 < cardIDbis && cardIDbis < 14){
-        return 10;
+        return 10; // les tetes
       }
       else{
-        return cardIDbis;
+        return cardIDbis; //cartes de 2 a 10
       }
     }
     cardIDbis = cardIDbis - 13;
@@ -70,32 +79,52 @@ function getCardValue(cardID,sumScore){
 function setupListener(){
   buttonCard.addEventListener("click",function(){cardActionManager(cardList,pickedCards)});
   buttonStay.addEventListener("click",function(){dealerActionManager(cardList,pickedCards)});
+  buttonContinue.addEventListener("click",function(){resetTurn()});
 }
 
-/* gameManager */
+/* Initialisation */
 
 function resetTurn(){
   document.getElementById("ddiv").innerHTML = "";
   document.getElementById("ydiv").innerHTML = "";
   layerCardsSumValue = 0;
   dealerCardsSumValue = 0;
+  enableButtons();
 }
+
+function disableButtons(){
+  buttonCard.disabled = true;
+  buttonStay.disabled = true;
+  buttonLeave.disabled = false;
+  buttonContinue.disabled = false;
+}
+
+function enableButtons(){
+  buttonCard.disabled = false;
+  buttonStay.disabled = false;
+  buttonLeave.disabled = true;
+  buttonContinue.disabled = true;
+}
+
+
+/* gameManager */
 
 function cardActionManager(cardList,pickedCards){
   var cardScore = getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ydiv"),playerCardsSumValue);
   playerCardsSumValue = playerCardsSumValue + cardScore;
   labelSumPlayer.innerHTML = String(playerCardsSumValue);
   if (playerCardsSumValue > 42){
-    console.log("PERDU")
+    console.log("PERDU");
+    disableButtons();
   }
   if (playerCardsSumValue == 42){
-    console.log("Marathon Jack")
+    console.log("Marathon Jack");
   }
 }
 
 function dealerActionManager(cardList,pickedCards){
 
-  console.log("dealer"+dealerCardsSumValue)
+  console.log("dealer"+dealerCardsSumValue);
 
   while (dealerCardsSumValue < 43){
 
@@ -104,12 +133,28 @@ function dealerActionManager(cardList,pickedCards){
     labelSumDealer.innerHTML = String(dealerCardsSumValue);
 
     if (playerCardsSumValue <= dealerCardsSumValue){
-      console.log("PERDU")
+      console.log("PERDU");
     }
-
   }
-
 }
+
+/* round end  */
+
+function win(){
+  disableButtons();
+  labelResult.innerHTML = "You win this turn"
+  money =  money + bet;
+  labelMoney.innerHTML = String(money);
+}
+
+function loose(){
+  disableButtons();
+  labelMoney.innerHTML = String(money);
+  money = money - bet;
+  labelMoney.innerHTML = String(money);
+}
+
+
 
 /* sleep  */
 
