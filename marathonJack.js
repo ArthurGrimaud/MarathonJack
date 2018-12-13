@@ -13,6 +13,7 @@ var buttonLeave = document.getElementById("leave");
 
 var labelResult = document.getElementById("result");
 var labelMoney = document.getElementById("money");
+var labelBet = document.getElementById("currentBet");
 
 var buttonHelp=document.getElementById("buttonHelp");
 
@@ -107,6 +108,7 @@ function resetTurn(){
   playerCardsSumValue = getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ydiv"),playerCardsSumValue);
   dealerCardsSumValue = getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ddiv"),dealerCardsSumValue);
   labelResult.innerHTML = "Playing...";
+  labelBet.innerHTML = "Current Bet" + bet;
   enableButtons();
 }
 
@@ -189,6 +191,7 @@ function addBet(){
   bet = bet + 10;
   playerMoney = playerMoney - 10;
   labelMoney.innerHTML = "money: " + playerMoney;
+  labelBet.innerHTML = "Current Bet: " + bet;
 }
 
 /*  Help   */
