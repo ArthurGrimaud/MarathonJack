@@ -97,11 +97,17 @@ h4{
 .buttonFenetre{
   position: inherit;
   bottom: 65px;
+  width: 100px;
+  height: 30px;
+  border: solid #32a1ce;
+  border-radius: 12px;
+  background-color: #FEFEFE;
+  font-size: 15px;
 }
 .button{
   margin: auto;
   position: relative;
-  width: 240px;
+  width: 350px;
   height: 50px;
   font-size: 30px;
   border: thick double #32a1ce;
@@ -131,7 +137,49 @@ h4{
   background-color: white;
   color: black;
 }
-
+.Money{
+  height: 100px;
+  width: 180px;
+  position: relative;
+  bottom: 210px;
+  left: 500px;
+  border: 4mm ridge;
+  border-color: red;
+  background-color: black;
+}
+.MoneyStyle{
+  font-family: "Arial"
+  font-size: 100px;
+  color: white;
+}
+.Status{
+  height: 250px;
+  width: 250px;
+  border: thick double #32a1ce;
+  border-radius: 12px;
+  position: relative;
+  bottom: 850px;
+  right: 700px;
+  background-color: black;
+  color: white;
+}
+.Disco{
+  text-align: center;
+  position: relative;
+  top: 50%;
+  font-size: 20px;
+  animation : Flash 2s infinite;
+}
+.TakeCards{
+  border: 4mm ridge;
+  border-color: red;
+  width: 500px;
+  height: auto;
+  position: relative;
+  bottom: 550px;
+  right: 650px;
+  background-color: black;
+}
 @keyframes PlayerIn {
   from{
     position: relative;
@@ -142,6 +190,28 @@ h4{
     position: relative;
     left: 0%;
     bottom: 0px;
+  }
+}
+@keyframes Flash{
+  0%{
+    color: white;
+    font-size: 20px;
+  }
+  25%{
+    color: red;
+    font-size: 25px;
+  }
+  50%{
+    color: cyan;
+    font-size: 30px;
+  }
+  75%{
+    color: yellow;
+    font-size: 25px;
+  }
+  100%{
+    color: black;
+    font-size: 20px;
   }
 }
 
