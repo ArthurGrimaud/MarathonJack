@@ -1,3 +1,7 @@
+html, body {
+  overflow: hidden;
+}
+
 body{
   text-align: center;
   background: url("img/background2.jpg")
@@ -18,9 +22,16 @@ div{
 }
 h4{
   position: inherit;
-  /* bottom:60px; */
   height: 10px;
   bottom:55px;
+}
+h5{
+  color: white;
+  font-family: "Arial"
+}
+h6{
+  color: white;
+  font-family: "Arial"
 }
 .titre{
   color: #FEFEFE;
@@ -72,14 +83,14 @@ h4{
   font-size: 15px;
   display: flex;
   position: relative;
-  top:110px;
+  top:150px;
   left:500px;
 }
 .scorePlayer{
   font-size: 15px;
   display: flex;
   position: relative;
-  top: 255px;
+  top: 350px;
   left: 500px;
 }
 .fenetre{
@@ -146,6 +157,7 @@ h4{
   border: 4mm ridge;
   border-color: red;
   background-color: black;
+  border-radius: 12px;
 }
 .MoneyStyle{
   font-family: "Arial"
@@ -153,32 +165,34 @@ h4{
   color: white;
 }
 .Status{
-  height: 250px;
-  width: 250px;
+  height: 65px;
+  width: 400px;
   border: thick double #32a1ce;
   border-radius: 12px;
   position: relative;
-  bottom: 850px;
+  bottom: 750px;
   right: 700px;
   background-color: black;
   color: white;
+  animation: backFlash 2s infinite;
 }
 .Disco{
   text-align: center;
   position: relative;
-  top: 50%;
+  top: 15px;
   font-size: 20px;
   animation : Flash 2s infinite;
 }
 .TakeCards{
   border: 4mm ridge;
   border-color: red;
-  width: 500px;
+  width: 304px;
   height: auto;
   position: relative;
-  bottom: 550px;
+  bottom: 350px;
   right: 650px;
   background-color: black;
+  border-radius: 12px;
 }
 @keyframes PlayerIn {
   from{
@@ -214,6 +228,14 @@ h4{
     font-size: 20px;
   }
 }
+@keyframes backFlash{
+  0%{
+    background-color: black;
+  }
+  25%{
+    background-color: cyan;
+  }
+}
 
 .sidehelp {
   height: 100%;
@@ -241,10 +263,4 @@ h4{
 
 @media screen and (max-height: 450px) {
   .sidehelp {padding-top: 15px;}
-}
-
-h6{
-  color: white;
-  font-family: "Arial"
-  font-size: 30px;
 }
