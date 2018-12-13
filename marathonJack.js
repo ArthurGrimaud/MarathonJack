@@ -48,6 +48,9 @@ function drawCard(cardList,pickedCards){
   var rand = Math.floor(Math.random() * (nbCard)) + 1;
   while (pickedCards.includes(rand)){ // si la carte a deja ete tiree
     rand = Math.floor(Math.random() * (nbCard)) + 1; //une autre carte est choisie
+    if (pickedCards.length > 51){
+      pickedCards = [];
+    }
   }
   pickedCards.push(rand); // on ajoute la carte tiree au carte deja tiree
   return rand;
