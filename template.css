@@ -1,6 +1,8 @@
-html, body {
+/* html, body {
   overflow: hidden;
-}
+  width: auto;
+  height: auto;
+} */
 
 body{
   text-align: center;
@@ -197,6 +199,16 @@ h6{
   bottom: 350px;
   right: 650px;
   background-color: black;
+  border-radius: 12px;
+}
+.endGame{
+  position: relative;
+  bottom: 60%
+  height: 250px;
+  width: 250px;
+  background-color: black;
+  border: 4mm ridge;
+  border-color: red;
   border-radius: 12px;
 }
 @keyframes PlayerIn {
