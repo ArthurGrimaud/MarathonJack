@@ -131,6 +131,7 @@ h4{
   background-color: white;
   color: black;
 }
+
 @keyframes PlayerIn {
   from{
     position: relative;
@@ -142,4 +143,38 @@ h4{
     left: 0%;
     bottom: 0px;
   }
+}
+
+.sidehelp {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: black;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  border: thick double #32a1ce;
+  border-radius: 12px;
+}
+
+.sidehelp .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  color : white;
+}
+
+@media screen and (max-height: 450px) {
+  .sidehelp {padding-top: 15px;}
+}
+
+h6{
+  color: white;
+  font-family: "Arial"
+  font-size: 30px;
 }
