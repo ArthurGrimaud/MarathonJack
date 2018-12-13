@@ -86,14 +86,14 @@ h6{
   display: flex;
   position: relative;
   top:150px;
-  left:500px;
+  left:420px;
 }
 .scorePlayer{
   font-size: 15px;
   display: flex;
   position: relative;
   top: 350px;
-  left: 500px;
+  left: 420px;
 }
 .fenetre{
   color: #FEFEFE;
@@ -164,11 +164,13 @@ h6{
 .MoneyStyle{
   color: white;
   position: relative;
+  bottom: 20px;
   font-size: 25px;
   margin: 20%;
 }
 .BetStyle{
   position: relative;
+  bottom: 40px;
   color: white;
   font-size: 25px;
 
@@ -179,8 +181,8 @@ h6{
   border: thick double #32a1ce;
   border-radius: 12px;
   position: relative;
-  bottom: 750px;
-  right: 700px;
+  bottom: 880px;
+  right: 0px;
   background-color: black;
   color: white;
   animation: backFlash 2s infinite;
@@ -205,13 +207,30 @@ h6{
 }
 .endGame{
   position: relative;
-  bottom: 60%
   height: 250px;
   width: 250px;
   background-color: black;
   border: 4mm ridge;
   border-color: red;
   border-radius: 12px;
+}
+.msgFin{
+  color: white;
+  font-size: 20px;
+  position: relative;
+  text-align: center;
+  bottom: 70px;
+  left: 90px;
+}
+.giFin{
+  position:relative;
+  top: 30%;
+  left: 16%;
+}
+.buttonFin{
+  position: relative;
+  top: 55%;
+  right: 20%;
 }
 @keyframes PlayerIn {
   from{
