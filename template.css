@@ -207,9 +207,9 @@ h6{
 }
 .endGame{
   position: relative;
-  bottom: 1000px;
-  height: 300px;
-  width: 500px;
+  bottom: 1200px;
+  height: 800px;
+  width: 1200px;
   background-color: black;
   border: 4mm ridge;
   border-color: red;
@@ -220,18 +220,17 @@ h6{
   font-size: 20px;
   position: relative;
   text-align: center;
-  bottom: 70px;
   left: 40px;
 }
 .giFin{
   position:relative;
-  top: 30%;
-  right: 40%;
+  top: 350px;
+  right: 150px;
 }
 .buttonFin{
   position: relative;
-  top: 55%;
-  right: 0%;
+  top: 750px;
+  right: 200px;
   border: solid #32a1ce;
   border-radius: 12px;
   background-color: #FEFEFE;
