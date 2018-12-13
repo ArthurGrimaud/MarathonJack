@@ -137,6 +137,14 @@ function enableButtons(){
   buttonContinue.disabled = true;
 }
 
+function disableAll(){
+  buttonCard.disabled = true;
+  buttonStay.disabled = true;
+  buttonBet.disabled =true;
+  buttonLeave.disabled = true;
+  buttonContinue.disabled = true;
+}
+
 
 /* gameManager */
 
@@ -199,11 +207,14 @@ function loose(){
 /* bet   */
 
 function addBet(){
+  if (playerMoney>0){
   bet = bet + 10;
   playerMoney = playerMoney - 10;
   labelMoney.innerHTML = "Money: " + playerMoney+"$";
   labelBet.innerHTML = "Current Bet: " + bet;
 }
+}
+
 
 /*  Help   */
 
@@ -305,14 +316,17 @@ function endGame(endType){
   if(endType=="caught"){
     labelEndGame.innerHTML = "You have been Caught Cheating [Money = 0$]";
     endGif.src = "img/arrest.gif";
+    disableAll()
   }
   if(endType=="leave"){
     labelEndGame.innerHTML = "You have leave the casino with " + playerMoney + "$";
     endGif.src = "img/leave.gif";
+    disableAll()
   }
   if(endType=="ruined"){
     labelEndGame.innerHTML = "You are ruined [Money = 0$]";
     endGif.src = "img/ruined.gif";
+    disableAll()
   }
 }
 
