@@ -151,25 +151,27 @@ h6{
   color: black;
 }
 .Money{
-  height: 100px;
-  width: 180px;
+  height: 70px;
+  width: 250px;
   position: relative;
   bottom: 210px;
-  left: 500px;
+  left: 520px;
   border: 4mm ridge;
   border-color: red;
   background-color: black;
   border-radius: 12px;
-  font-size: 30px;
-  color: white;
 }
 .MoneyStyle{
-  font-family: "Arial";
   color: white;
+  position: relative;
+  font-size: 25px;
+  margin: 20%;
 }
 .BetStyle{
-  font-family:"Arial";
+  position: relative;
   color: white;
+  font-size: 25px;
+
 }
 .Status{
   height: 65px;

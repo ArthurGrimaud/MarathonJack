@@ -44,12 +44,16 @@
         <label id="result"></label>
       </h4>
       <INPUT type="button" value="Continue" id="continue" class="buttonFenetre">
-      <INPUT type="button" value="Ragequit" id="leave" class="buttonFenetre">
+      <INPUT type="button" value="Leave" id="leave" class="buttonFenetre">
       <INPUT type="button" value="Bet" name="Bet" id="buttonBet" class="buttonFenetre">
     </div>
     <div id="divMoney" class="Money">
-      <label id="money" class="MoneyStyle"></label>
-      <label id="currentBet" class="BetStyle"></label>
+      <h6>
+        <label id="money" class="MoneyStyle"></label>
+      </h6>
+      <h6>
+        <label id="currentBet" class="BetStyle"></label>
+      </h6>
     </div>
     <div id="distracted" class="Status">
       <label class="Disco">Dealer is not looking</label>
@@ -61,8 +65,9 @@
       <img src="img/3.BMP" id="trois">
     </div>
     <div id="GameOver" class="endGame">
+      <label id="msgEnd"></label>
       <img src="img/1.BMP" id="end">
-      <INPUT type="button" id="buttonEnd" value="End GAME"> 
+      <INPUT type="button" id="buttonEnd" value="Restart" class="buttonFenetre">
     </div>
     <script src="marathonJack.js" type="text/javascript"></script>
   </body>
