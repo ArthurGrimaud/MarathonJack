@@ -103,6 +103,11 @@ function setupListener(){
   buttonHelp.addEventListener("click",function(){openHelp()})
   buttonBet.addEventListener("click",function(){addBet()})
   buttonLeave.addEventListener("click",function(){endGame("leave")});
+
+  chtCard1.addEventListener("click",function(){playCheatCard(5)});
+  chtCard2.addEventListener("click",function(){playCheatCard(10)});
+  chtCard3.addEventListener("click",function(){playCheatCard(8)});
+  chtCard4.addEventListener("click",function(){playCheatCard(3)});
 }
 
 /* Initialisation */
@@ -272,10 +277,6 @@ function displayCheatCards(){
   var chtCards = document.getElementById("cheatCards");
   chtCards.style.visibility='visible';
 
-  chtCard1.addEventListener("click",function(){playCheatCard(5)});
-  chtCard2.addEventListener("click",function(){playCheatCard(10)});
-  chtCard3.addEventListener("click",function(){playCheatCard(8)});
-  chtCard4.addEventListener("click",function(){playCheatCard(3)});
 
 }
 
