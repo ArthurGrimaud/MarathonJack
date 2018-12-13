@@ -6,7 +6,7 @@ var buttonStay = document.getElementById("buttonStay");
 var labelSumDealer = document.getElementById("sumDealerCards");
 var labelSumPlayer = document.getElementById("sumPlayerCards");
 
-var betarea = document.getElementById("bet");
+var buttonBet= document.getElementById("buttonBet");
 
 var buttonContinue = document.getElementById("continue");
 var buttonLeave = document.getElementById("leave");
@@ -21,7 +21,7 @@ var dealerCardsSumValue = 0;
 
 var dealerDistracted = true;
 
-var money = 1000;
+var playerMoney = 1000;
 var bet = 0;
 
 var cardList = [...Array(53).keys()];
@@ -88,7 +88,8 @@ function setupListener(){
   buttonCard.addEventListener("click",function(){cardActionManager(cardList,pickedCards)});
   buttonStay.addEventListener("click",function(){dealerActionManager(cardList,pickedCards)});
   buttonContinue.addEventListener("click",function(){resetTurn()});
-  buttonHelp.addEventListener("click",function(){helpBtn()})
+  buttonHelp.addEventListener("click",function(){openHelp()})
+  buttonBet.addEventListener("click",function(){addBet()})
   buttonLeave.addEventListener("click",function(){resetTurn()});
 }
 
@@ -99,13 +100,14 @@ function resetTurn(){
   document.getElementById("ydiv").innerHTML = "";
   playerCardsSumValue = getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ydiv"),playerCardsSumValue);
   dealerCardsSumValue = getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ddiv"),dealerCardsSumValue);
-  bet = betarea.value
+  labelResult.innerHTML = "Playing...";
   enableButtons();
 }
 
 function disableButtons(){
   buttonCard.disabled = true;
   buttonStay.disabled = true;
+  buttonBet.disabled =false;
   buttonLeave.disabled = false;
   buttonContinue.disabled = false;
 
@@ -114,6 +116,7 @@ function disableButtons(){
 function enableButtons(){
   buttonCard.disabled = false;
   buttonStay.disabled = false;
+  buttonBet.disabled =true;
   buttonLeave.disabled = true;
   buttonContinue.disabled = true;
 }
@@ -160,40 +163,38 @@ function dealerActionManager(cardList,pickedCards){
 
 function win(){
   disableButtons();
-  labelResult.innerHTML = "You win this turn"
-  money =  money + bet;
-  labelMoney.innerHTML = String(money);
+  labelResult.innerHTML = "You win this turn";
+  playerMoney =  playerMoney + (bet*2);
+  bet = 0;
+  labelMoney.innerHTML = "money: " +String(playerMoney);
 }
 
 function loose(){
   disableButtons();
-  labelResult.innerHTML = "You loose this turn"
-  money = money - bet;
-  labelMoney.innerHTML = String(money);
+  labelResult.innerHTML = "You loose this turn";
+  bet = 0;
+  labelMoney.innerHTML = "money: " + String(playerMoney);
+}
+
+
+/* bet   */
+
+function addBet(){
+  bet = bet + 10;
+  playerMoney = playerMoney - 10;
+  labelMoney.innerHTML = "money: " + playerMoney;
 }
 
 /*  Help   */
 
-function helpBtn () {
-  var hlp = document.createElement("div");
-  console.log(isHelpHide);
-  if(isHelpHide){
-    var hlp = document.createElement("div");
-    hlp.setAttribute("class","helpeffect");
-    hlp.setAttribute("id","helpDiv");
-
-    var bdy = document.getElementById("body");
-    bdy.appendChild(hlp);
-
-    var newContent = document.createTextNode("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
-    hlp.appendChild(newContent);
-    isHelpHide = false;
-  }else{
-    var help = document.getElementById("helpDiv")
-    help.parentNode.removeChild(help);
-    isHelpHide = true;
-  }
+function openHelp() {
+  document.getElementById("mySidehelp").style.width = "500px";
 }
+
+function closeHelp() {
+  document.getElementById("mySidehelp").style.width = "0";
+}
+
 
 /* sleep  */
 
@@ -240,5 +241,5 @@ document.addEventListener('keydown', function(event){
 } );
 
 setupListener();
-isDealerDistracted();
+resetTurn();
 move();
