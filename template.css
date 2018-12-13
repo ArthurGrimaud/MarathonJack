@@ -218,19 +218,19 @@ h6{
 .msgFin{
   color: white;
   font-size: 20px;
-  position: relative;
+  position: fixed;
   text-align: center;
-  left: 40px;
+  left: 800px;
 }
 .giFin{
-  position:relative;
-  top: 350px;
-  right: 150px;
+  position:fixed;
+  top: 250px;
+  right: 700px;
 }
 .buttonFin{
-  position: relative;
-  top: 750px;
-  right: 200px;
+  position: fixed;
+  top: 880px;
+  right: 900px;
   border: solid #32a1ce;
   border-radius: 12px;
   background-color: #FEFEFE;
