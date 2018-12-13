@@ -25,6 +25,7 @@ var chtCard4 = document.getElementById("trois");
 var endGameDiv = document.getElementById("GameOver");
 var labelEndGame= document.getElementById("msgEnd");
 var buttonEndGame = document.getElementById("buttonEnd");
+var endGif = document.getElementById("end");
 
 var playerCardsSumValue = 0;
 var dealerCardsSumValue = 0;
@@ -32,7 +33,7 @@ var dealerCardsSumValue = 0;
 var dealerDistracted = true;
 var startDistractSecond = 0;
 
-var playerMoney = 1000;
+var playerMoney = 100;
 var bet = 0;
 
 var cardList = [...Array(53).keys()];
@@ -300,14 +301,18 @@ document.addEventListener('keydown', function(event){
 
 function endGame(endType){
   endGameDiv.style.visibility='visible';
+  buttonEnd.addEventListener("click",function(){location.reload()});
   if(endType=="caught"){
     labelEndGame.innerHTML = "You have been Caught Cheating [Money = 0$]";
+    endGif.src = "img/arrest.gif";
   }
   if(endType=="leave"){
     labelEndGame.innerHTML = "You have leave the casino with " + playerMoney + "$";
+    endGif.src = "img/leave.gif";
   }
   if(endType=="ruined"){
     labelEndGame.innerHTML = "You are ruined [Money = 0$]";
+    endGif.src = "img/ruined.gif";
   }
 }
 
