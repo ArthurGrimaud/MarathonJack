@@ -1,8 +1,4 @@
-/* html, body {
-  overflow: hidden;
-  width: auto;
-  height: auto;
-} */
+
 
 body{
   text-align: center;
@@ -206,8 +202,9 @@ h6{
   border-radius: 12px;
 }
 .endGame{
-  position: relative;
-  bottom: 1200px;
+  position: fixed;
+  bottom: 50px;
+  left: 350px;
   height: 800px;
   width: 1200px;
   background-color: black;
