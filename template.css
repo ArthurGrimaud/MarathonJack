@@ -207,8 +207,9 @@ h6{
 }
 .endGame{
   position: relative;
-  height: 250px;
-  width: 250px;
+  bottom: 1000px;
+  height: 300px;
+  width: 500px;
   background-color: black;
   border: 4mm ridge;
   border-color: red;
@@ -220,17 +221,24 @@ h6{
   position: relative;
   text-align: center;
   bottom: 70px;
-  left: 90px;
+  left: 40px;
 }
 .giFin{
   position:relative;
   top: 30%;
-  left: 16%;
+  right: 40%;
 }
 .buttonFin{
   position: relative;
   top: 55%;
-  right: 20%;
+  right: 0%;
+  border: solid #32a1ce;
+  border-radius: 12px;
+  background-color: #FEFEFE;
+  font-size: 15px;
+  width: 120px;
+  height: 30px;
+  font-size: 20px;
 }
 @keyframes PlayerIn {
   from{
