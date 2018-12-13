@@ -16,10 +16,16 @@ var labelMoney = document.getElementById("money");
 
 var buttonHelp=document.getElementById("buttonHelp");
 
+var chtCard1 = document.getElementById("cinq");
+var chtCard2 = document.getElementById("dix");
+var chtCard3 = document.getElementById("huit");
+var chtCard4 = document.getElementById("trois");
+
 var playerCardsSumValue = 0;
 var dealerCardsSumValue = 0;
 
 var dealerDistracted = true;
+var startDistractSecond = 0;
 
 var playerMoney = 1000;
 var bet = 0;
@@ -196,28 +202,24 @@ function closeHelp() {
 }
 
 
-/* sleep  */
+/* time */
 
 function sleep(seconds){
     var waitUntil = new Date().getTime() + seconds*1000;
     while(new Date().getTime() < waitUntil) true;
 }
 
+function getSeconds(){
+  var dt = new Date();
+  var sec = dt.getSeconds() + (60 * (dt.getMinutes() + (60 * dt.getHours())));
+  console.log(sec);
+  return sec
+
+}
+
 /* progress bar */
 
-function move() {
-    var elem = document.getElementById("myBar");
-    var width = 1;
-    var id = setInterval(frame, 10);
-    function frame() {
-        if (width >= 100) {
-            clearInterval(id);
-        } else {
-            width++;
-            elem.style.width = width + '%';
-        }
-    }
-}
+
 
 
 /* Cheating */
@@ -225,14 +227,54 @@ function move() {
 
 function isDealerDistracted(){
 
-  var disctractedDuration = Math.floor(Math.random() * (3000)) + 300;
+  var isDisctracted = Math.floor(Math.random() * (3)) + 0;
+  if (isDisctracted == 1){
+    startDistractSecond = getSeconds() + 1;
+    console.log("disrait");
+    displayDealerDistracted();
+  }
+}
+
+function displayDealerDistracted(){
+
+document.getElementById("distracted").style.visibility='visible';
+setTimeout(function(){
+    document.getElementById("distracted").style.visibility='hidden';
+}, 1000);
+}
+
+function displayCheatCards(){
+  var chtCards = document.getElementById("cheatCards");
+  chtCards.style.visibility='visible';
+
+  chtCard1.addEventListener("click",function(){playCheatCard(5)});
+  chtCard2.addEventListener("click",function(){playCheatCard(10)});
+  chtCard3.addEventListener("click",function(){playCheatCard(8)});
+  chtCard4.addEventListener("click",function(){playCheatCard(3)});
 
 }
 
+function playCheatCard(value){
+
+  var cardScore = getCardValue(displayNewCard(value,"ydiv"),playerCardsSumValue);
+  playerCardsSumValue = playerCardsSumValue + cardScore;
+  labelSumPlayer.innerHTML = String(playerCardsSumValue);
+  document.getElementById("cheatCards").style.visibility='hidden';
+  if (playerCardsSumValue > 42){
+    console.log("PERDU");
+    loose();
+  }
+  if (playerCardsSumValue == 42){
+    console.log("Marathon Jack");
+    win();
+  }
+}
+
 document.addEventListener('keydown', function(event){
-  if(event.keyCode == 32) {
-    if(dealerDistracted == true){
+  if(event.keyCode == 68) {
+    if(startDistractSecond > getSeconds()){
       console.log("Cheating succesfully");
+      displayCheatCards();
     }
     else{
       console.log("You have been Caught");
@@ -240,6 +282,10 @@ document.addEventListener('keydown', function(event){
   }
 } );
 
+
+/* INITIALISATION */
+
 setupListener();
 resetTurn();
-move();
+document.getElementById("distracted").style.visibility='hidden';
+document.getElementById("cheatCards").style.visibility='hidden';
