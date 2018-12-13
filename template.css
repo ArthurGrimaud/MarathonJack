@@ -158,10 +158,15 @@ h6{
   border-color: red;
   background-color: black;
   border-radius: 12px;
+  font-size: 30px;
+  color: white;
 }
 .MoneyStyle{
-  font-family: "Arial"
-  font-size: 100px;
+  font-family: "Arial";
+  color: white;
+}
+.BetStyle{
+  font-family:"Arial";
   color: white;
 }
 .Status{
