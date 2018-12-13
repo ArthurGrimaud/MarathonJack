@@ -22,6 +22,10 @@ var chtCard2 = document.getElementById("dix");
 var chtCard3 = document.getElementById("huit");
 var chtCard4 = document.getElementById("trois");
 
+var endGameDiv = document.getElementById("GameOver");
+var labelEndGame= document.getElementById("msgEnd");
+var buttonEndGame = document.getElementById("buttonEnd");
+
 var playerCardsSumValue = 0;
 var dealerCardsSumValue = 0;
 
@@ -97,7 +101,7 @@ function setupListener(){
   buttonContinue.addEventListener("click",function(){resetTurn()});
   buttonHelp.addEventListener("click",function(){openHelp()})
   buttonBet.addEventListener("click",function(){addBet()})
-  buttonLeave.addEventListener("click",function(){resetTurn()});
+  buttonLeave.addEventListener("click",function(){endGame("leave")});
 }
 
 /* Initialisation */
@@ -107,8 +111,11 @@ function resetTurn(){
   document.getElementById("ydiv").innerHTML = "";
   playerCardsSumValue = getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ydiv"),playerCardsSumValue);
   dealerCardsSumValue = getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ddiv"),dealerCardsSumValue);
+  labelSumPlayer.innerHTML = "Total: " +String(playerCardsSumValue);
+  labelSumDealer.innerHTML = "Total: " +String(dealerCardsSumValue);
   labelResult.innerHTML = "Playing...";
-  labelBet.innerHTML = "Current Bet" + bet;
+  labelBet.innerHTML = "Current Bet: " + bet;
+  labelMoney.innerHTML = "Money: " + playerMoney+"$";
   enableButtons();
 }
 
@@ -135,7 +142,7 @@ function enableButtons(){
 function cardActionManager(cardList,pickedCards){
   var cardScore = getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ydiv"),playerCardsSumValue);
   playerCardsSumValue = playerCardsSumValue + cardScore;
-  labelSumPlayer.innerHTML = String(playerCardsSumValue);
+  labelSumPlayer.innerHTML = "Total: " +String(playerCardsSumValue);
   if (playerCardsSumValue > 42){
     console.log("PERDU");
     loose();
@@ -152,7 +159,7 @@ function dealerActionManager(cardList,pickedCards){
   while (dealerCardsSumValue<=playerCardsSumValue){
     var cardScore = getCardValue(displayNewCard(drawCard(cardList,pickedCards),"ddiv"),playerCardsSumValue);
     dealerCardsSumValue = dealerCardsSumValue + cardScore;
-    labelSumDealer.innerHTML = String(dealerCardsSumValue);
+    labelSumDealer.innerHTML = "Total: " +String(dealerCardsSumValue);
   }
 
   if(dealerCardsSumValue<43){
@@ -181,7 +188,10 @@ function loose(){
   disableButtons();
   labelResult.innerHTML = "You loose this turn";
   bet = 0;
-  labelMoney.innerHTML = "money: " + String(playerMoney);
+  labelMoney.innerHTML = "Money: " + playerMoney+"$";
+  if (playerMoney<10){
+    endGame("ruined");
+  }
 }
 
 
@@ -190,7 +200,7 @@ function loose(){
 function addBet(){
   bet = bet + 10;
   playerMoney = playerMoney - 10;
-  labelMoney.innerHTML = "money: " + playerMoney;
+  labelMoney.innerHTML = "Money: " + playerMoney+"$";
   labelBet.innerHTML = "Current Bet: " + bet;
 }
 
@@ -232,7 +242,7 @@ function isDealerDistracted(){
 
   var isDisctracted = Math.floor(Math.random() * (3)) + 0;
   if (isDisctracted == 1){
-    startDistractSecond = getSeconds() + 1;
+    startDistractSecond = getSeconds() + 2;
     console.log("disrait");
     displayDealerDistracted();
   }
@@ -281,10 +291,25 @@ document.addEventListener('keydown', function(event){
     }
     else{
       console.log("You have been Caught");
+      endGame("caught");
     }
   }
 } );
 
+ /*  Game end    */
+
+function endGame(endType){
+  endGameDiv.style.visibility='visible';
+  if(endType=="caught"){
+    labelEndGame.innerHTML = "You have been Caught Cheating [Money = 0$]";
+  }
+  if(endType=="leave"){
+    labelEndGame.innerHTML = "You have leave the casino with " + playerMoney + "$";
+  }
+  if(endType=="ruined"){
+    labelEndGame.innerHTML = "You are ruined [Money = 0$]";
+  }
+}
 
 /* INITIALISATION */
 
@@ -292,3 +317,4 @@ setupListener();
 resetTurn();
 document.getElementById("distracted").style.visibility='hidden';
 document.getElementById("cheatCards").style.visibility='hidden';
+endGameDiv.style.visibility='hidden';
