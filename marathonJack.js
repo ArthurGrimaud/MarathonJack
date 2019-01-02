@@ -198,7 +198,7 @@ function win(){
   labelResult.innerHTML = "You win this turn";
   playerMoney =  playerMoney + (bet*2);
   bet = 0;
-  labelMoney.innerHTML = "money: " +String(playerMoney);
+  labelMoney.innerHTML = "money: " +String(playerMoney) +"$";
 }
 
 function loose(){
@@ -263,7 +263,6 @@ function isDealerDistracted(){
   var isDisctracted = Math.floor(Math.random() * (3)) + 0;
   if (isDisctracted == 1){
     startDistractSecond = getSeconds() + 2;
-    console.log("disrait");
     displayDealerDistracted();
   }
 }
@@ -287,7 +286,7 @@ function playCheatCard(value){
 
   var cardScore = getCardValue(displayNewCard(value,"ydiv"),playerCardsSumValue);
   playerCardsSumValue = playerCardsSumValue + cardScore;
-  labelSumPlayer.innerHTML = String(playerCardsSumValue);
+  labelSumPlayer.innerHTML = "Total: " +String(playerCardsSumValue);
   document.getElementById("cheatCards").style.visibility='hidden';
   if (playerCardsSumValue > 42){
     console.log("PERDU");
@@ -300,7 +299,7 @@ function playCheatCard(value){
 }
 
 document.addEventListener('keydown', function(event){
-  if(event.keyCode == 68) {
+  if(event.keyCode == 68) { // key = d
     if(startDistractSecond > getSeconds()){
       console.log("Cheating succesfully");
       displayCheatCards();
