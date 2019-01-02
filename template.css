@@ -1,6 +1,7 @@
 body{
   text-align: center;
-  background: url("img/background2.jpg")
+  background: url("img/background2.jpg");
+  height: 500px;
 }
 h1{
   height: 50px;
